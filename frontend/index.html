@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Report and track community issues.">
+  <title>Community Issue Reporter</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">C</span><span>Community<span class="brand-light">Reporter</span></span></a>
+    <div class="top-actions"><span class="live-dot"></span><span>Community dashboard</span><button id="refreshBtn" class="button button-quiet" type="button">Refresh</button></div>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <div><p class="eyebrow">MAKE YOUR NEIGHBOURHOOD BETTER</p><h1>Small reports.<br><span>Meaningful change.</span></h1>
+        <p class="hero-copy">Report local problems, follow their progress, and help your community stay informed.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="art-circle"></div><div class="art-card art-card-one">📍 <b>Issue reported</b><small>Right where it matters</small></div><div class="art-card art-card-two">✓ <b>Progress tracked</b><small>One community, together</small></div><div class="art-building">⌂</div></div>
+    </section>
+    <section class="stats" aria-label="Issue statistics">
+      <article class="stat-card"><span class="stat-icon purple">▤</span><div><p>Total reports</p><strong id="totalCount">—</strong></div></article>
+      <article class="stat-card"><span class="stat-icon orange">◷</span><div><p>Open issues</p><strong id="openCount">—</strong></div></article>
+      <article class="stat-card"><span class="stat-icon green">✓</span><div><p>Resolved</p><strong id="resolvedCount">—</strong></div></article>
+    </section>
+    <div class="section-heading"><div><p class="eyebrow">COMMUNITY PULSE</p><h2>Issue reports</h2></div><button id="newReportBtn" class="button button-primary" type="button">＋ Report an issue</button></div>
+    <section class="toolbar">
+      <label class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search title, location or description…" aria-label="Search reports"></label>
+      <label class="filter-label">Status <select id="statusFilter"><option value="">All statuses</option><option value="open">Open</option><option value="in_progress">In progress</option><option value="resolved">Resolved</option></select></label>
+      <label class="filter-label">Priority <select id="priorityFilter"><option value="">All priorities</option><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select></label>
+    </section>
+    <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+    <section id="reportsGrid" class="reports-grid" aria-live="polite"><div class="loading-card">Loading community reports…</div></section>
+    <p class="footer-note">Built for communities · Please report emergencies to the appropriate local emergency service.</p>
+  </main>
+  <dialog id="reportDialog" class="dialog">
+    <form id="reportForm" class="report-form">
+      <div class="dialog-head"><div><p class="eyebrow">HELP IMPROVE YOUR AREA</p><h2 id="dialogTitle">Report an issue</h2></div><button id="closeDialogBtn" class="close-button" type="button" aria-label="Close dialog">×</button></div>
+      <input id="editingId" type="hidden">
+      <label>Issue title <input id="titleInput" name="title" maxlength="120" required placeholder="e.g. Streetlight not working"></label>
+      <label>Location <input id="locationInput" name="location" maxlength="180" required placeholder="Street, landmark or area"></label>
+      <div class="form-row"><label>Category <select id="categoryInput" name="category" required><option value="Roads">Roads</option><option value="Lighting">Lighting</option><option value="Waste">Waste</option><option value="Water">Water</option><option value="Public safety">Public safety</option><option value="Other">Other</option></select></label>
+      <label>Priority <select id="priorityInput" name="priority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></label></div>
+      <label>Description <textarea id="descriptionInput" name="description" rows="4" maxlength="2000" required placeholder="Describe what happened and why it needs attention…"></textarea></label>
+      <p class="form-hint">Please do not include private contact details or sensitive personal information.</p>
+      <div class="dialog-actions"><button id="cancelBtn" type="button" class="button button-quiet">Cancel</button><button id="submitBtn" type="submit" class="button button-primary">Submit report</button></div>
+    </form>
+  </dialog>
+  <dialog id="detailDialog" class="dialog detail-dialog"><div id="detailContent"></div><div class="dialog-actions"><button id="closeDetailBtn" class="button button-primary" type="button">Done</button></div></dialog>
+</body>
+</html>

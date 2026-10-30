@@ -1,0 +1,18 @@
+# Dependencies and generated files
+node_modules/
+backend/node_modules/
+coverage/
+.DS_Store
+Thumbs.db
+
+# Secrets: never commit real credentials
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Logs
+npm-debug.log*
+*.log
